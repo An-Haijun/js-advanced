@@ -1,0 +1,17 @@
+{
+  "name": "js-advanced-texhnology-doc",
+  "version": "0.1.0",
+  "description": "该项目为 Javascript 高级程序设计一书的总结文档",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs --port 3001 --open",
+    "docs:build": "vuepress build docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AnHaijun",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^1.0.2"
+  }
+}
