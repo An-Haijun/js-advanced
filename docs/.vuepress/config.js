@@ -45,22 +45,34 @@ module.exports = {
     serviceWorker: false,
     themeConfig: {
         // 自动在导航栏右侧添加，github链接跳转按钮，此为路径
-        repo: 'An-Haijun/js-advanced-technology-doc',
+        repo: 'An-Haijun/js-advanced',
         editLinks: true,
         docsDir: 'docs',
         editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: '上次更新',
         nav: [{
-            text: '生态系统',
-            link: ''
+            text: '我的博客',
+            link: 'http://annavy.info'
         }],
         // 左侧菜单栏
         sidebar: [{
-            title: '第一章 JavaScript 简介',
+            title: '第 1 章 JavaScript 简介',
             collapsable: false,
             children: [
                 ['javascript-profile/', 'Introduction'],
                 'javascript-profile/brief-history'
+            ]
+        }, {
+            title: '第 8 章 BOM',
+            collapsable: false,
+            children: [
+                ['bom/', 'Introduction'],
+                'bom/window',
+                'bom/location',
+                'bom/navigator',
+                'bom/screen',
+                'bom/history',
+                'bom/summarizes.md'
             ]
         }]
     }

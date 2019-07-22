@@ -4,7 +4,7 @@
   "description": "该项目为 Javascript 高级程序设计一书的总结文档",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev docs --port 3001 --open",
+    "dev": "vuepress dev docs --port 3001",
     "build": "vuepress build docs",
     "deploy": "sh build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
