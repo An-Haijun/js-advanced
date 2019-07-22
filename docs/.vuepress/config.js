@@ -1,8 +1,8 @@
 module.exports = {
-    base: '/vue-analysis/',
+    base: '/js-advanced/',
     dest: 'dist',
-    title: 'Vue.js 技术揭秘',
-    description: 'Analysis vue.js deeply',
+    title: 'JavaScript 高级程序设计总结文档',
+    description: 'JavaScript 高级程序设计总结文档',
     head: [
         ['link', {
             rel: 'icon',
