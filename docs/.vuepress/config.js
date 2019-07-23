@@ -1,7 +1,7 @@
 module.exports = {
     base: '/js-advanced/',
     dest: 'dist',
-    title: 'JavaScript 高级程序设计总结文档',
+    title: 'JS 高级程序设计',
     description: 'JavaScript 高级程序设计总结文档',
     head: [
         ['link', {
@@ -53,6 +53,9 @@ module.exports = {
         nav: [{
             text: '我的博客',
             link: 'http://annavy.info'
+        }, {
+            text: 'VuePress',
+            link: 'https://vuepress.vuejs.org/zh/guide/'
         }],
         // 左侧菜单栏
         sidebar: [{

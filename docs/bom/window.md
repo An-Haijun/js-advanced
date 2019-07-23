@@ -57,4 +57,69 @@ console.log(newVal); // undefined
 
 ## 8.1.3 窗口位置
 
-用来确定和修改 window 对象位置的属性和方法有很多。IE、Safari、Opera 和 Chrome都提供了 ScreenLeft 和 ScreenTop。
+用来确定和修改 window 对象位置的属性和方法有很多。IE、Safari、Opera 和 Chrome都提供了 ScreenLeft 和 ScreenTop，分别用于表示窗口相对于屏幕左边和上边的位置。
+
+| -       | screenLeft | screenTop | screenX | screenY |
+|---------|------------|-----------|---------|---------|
+| IE      | y          | y         | n       | n       |
+| Safari  | y          | y         | y       | y       |
+| Opera   | y          | y         | y-      | y-      |
+| Chrome  | y          | y         | y       | y       |
+| Firefox | n          | n         | y       | y       |
+
+注：'y-' 表示属性支持但并不对应。
+
+**下面代码可以跨浏览器去的窗口左边和上边对应的位置：**
+
+```javascript
+var leftPos = (typeof window.screenLeft === 'number') ?
+                window.screenLeft : window.screenX;
+
+var topPos = (typeof window.screenTop === 'number') ?
+                window.screenTop : window.screenY;
+```
+
+**将窗口精确移动到某一位置，moveTo() 和 moveBy()：**
+
+- 都接收两个参数；
+- moveTo()：新位置的 x 和 y 坐标值；
+- moveBy()：水平和垂直方向上移动的像素值。
+
+## 8.1.4 窗口大小
+
+跨浏览器确定一个窗口的大小不是一件简单的事。IE9+、Firefox、Safari、Opera 和 Chrome 均为此提供了四个属性：innerWidth、innerHeight、outerWidth 和 innerHeight。
+
+- IE9+、Safari 和 Firefox 中，outerWidth 和 outerHeight 返回浏览器窗口本身的尺寸（无论是从最外层的 window 对象还是从某个框架访问）。
+- Opera 中这两个属性的值表示页面视图容器的大小，页面视图容器值的是 Opera 中单个标签页对应的浏览器窗口。
+- Chrome 中 inner/outer Width/Height 都返回相同的值，即视口大小（viewport）大小而非浏览器窗口大小。
+
+**注：在最新版Chrome中，innerHeight返回视口高度，而 outerHeight 返回浏览器高度；innerWidth与outerWidth默认相等（在浏览器宽高改变后，相差14-15像素值）。**
+
+document.documentElement.clientWidth 和 document.documentElement.clientHight 中保存了页面视口的信息。不同浏览器在非标准模式下（混杂模式），会返回不同的结果。虽然无法最终确定浏览器窗口本身的大小，但却可以取得页面视口的大小，代码如下：
+
+```javascript
+var pageWidth = innerWidth,
+    pageHeight = innerHeight;
+
+if(typeof pageWidth != 'number') {
+    // 判断是否为标准模式
+    if(document.compatMode === 'CSS1Compat') {
+        pageWidth = document.documentElement.clientWidth;
+        pagHeight = document.documentElement.clientHeight;
+    } else {
+        pageWidth = document.body.clientWidth; // IE6 混杂模式
+        pagHeight = document.body.clientHeight; // IE6 混杂模式
+    }
+}
+```
+
+**注：标准模式含有 '&lt;!DOCTYPE html&gt;' 头部，混杂模式不含。**
+
+对于移动设备，有很多非常规的情形，也有各种的建议。移动开发咨询师 Peter-Paul Koch 记述了他对这个问题的研究：[移动 web 开发，推荐阅读该篇文章](http://t.cn/zOZs0Tz)；
+
+window.resizeTo/By()：调整窗口大小，部分浏览器默认禁用该方法。
+
+## 8.1.5 导航和打开窗口
+
+使用 window.open() 方法既可以导航到一个特定的 URL，也可以打开一个新的浏览器窗口。
+
