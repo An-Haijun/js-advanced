@@ -121,5 +121,71 @@ window.resizeTo/By()：调整窗口大小，部分浏览器默认禁用该方法
 
 ## 8.1.5 导航和打开窗口
 
-使用 window.open() 方法既可以导航到一个特定的 URL，也可以打开一个新的浏览器窗口。
+使用 window.open() 方法既可以导航到一个特定的 URL，也可以打开一个新的浏览器窗口。他接收4个参数：要加载的 URL，窗口目标，一个特性字符串以及一个表示新页面是否取代浏览器记录中当前加载页面的布尔值。通常只需传递第一个参数。
+```javascript
+// 等同于 <a href="http://www.wrox.com" target="topFrame"></a>
+window.open('http://www.wrox.com', 'topFrame');
+```
+这段代码会打开一个名为 topFrame 的窗口或框架。第二个参数还有其他几个值：_self、_parent、_top、_blank。第三个参数是一个以逗号分隔的设置字符串。
+
+## 8.1.6 间歇调用和超时调用
+
+- 超时调用：设置多少秒后执行，只执行一次。在个别浏览器环境下，尤其是移动端，会存在setTimeout执行完后不被回收销毁，而在持续执行状态。
+
+```javascript
+var timeoutId = setTimeout(function () {
+    console.log('hello world!');
+}, 1000);
+
+clearTimeout(timeoutId);
+```
+- 间歇调用：设置多少秒后执行，循环执行。使用它时，会出现第二次执行会在第一次未结束就执行的情况，因而推荐使用超时调用模拟间歇调用。
+
+```javascript
+var intervalId = setInterval(function () {
+    console.log('hello world!');
+}, 1000);
+
+clearInterval(timeoutId);
+```
+```javascript
+var num = 0,
+    max = 100;
+var intervalId = null,
+    initTimeout = null;
+
+function intervalNumber(num, max) {
+    num++;
+
+    if(num >= max) {
+        console.log('done');
+        clearTimeout(intervalId);
+    } else {
+        clearTimeout(initTimeout);
+        intervalId = setTimeout(intervalNumber, 1000);
+    }
+}
+
+initTimeout = setTimeout(intervalNumber, 1000);
+```
+
+## 8.1.7 系统对话框
+
+```javascript
+alert('hello world!');
+
+// 确认输入框
+if(confirm('Are you sure?')) {
+    console.log('sure');
+} else {
+    console.log(not sure);
+}
+
+// 带输入框的确认输入框
+var result = prompt('What is your name?', '');
+if(result != null) {
+    console.log('welcome, ' + result);
+}
+```
+
 
