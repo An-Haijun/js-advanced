@@ -52,7 +52,7 @@ module.exports = {
         lastUpdated: '上次更新',
         nav: [{
             text: '我的博客',
-            link: 'http://annavy.info'
+            link: 'http://anhaijun.info'
         }, {
             text: 'VuePress',
             link: 'https://vuepress.vuejs.org/zh/guide/'
